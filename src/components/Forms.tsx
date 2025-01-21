@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { register } from '../utils/firebaseInterface';
 import { useAuth } from '../utils/AuthContext';
+import { Navigate } from 'react-router-dom';
 
 type Props = {
     formType: 'login' | 'register'
@@ -16,9 +17,10 @@ const Forms = (props: Props) => {
         if (props.formType === 'register') {
             await register(email, password);
             return
-
+            
         }
         await login(email, password);
+        Navigate('/tasks')
         return
     }
     return (
